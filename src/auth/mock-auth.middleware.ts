@@ -14,11 +14,10 @@ declare module 'express' {
 @Injectable()
 export class MockAuthMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
-    // Mock user object with roles
     req.user = {
       id: 1,
       username: 'dev',
-      roles: process.env.ENV === 'development' ? ['admin'] : ['user'],
+      roles: ['admin'],
     };
 
     next();

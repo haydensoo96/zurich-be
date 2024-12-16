@@ -11,6 +11,6 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(MockAuthMiddleware)
-      .forRoutes({ path: 'product', method: RequestMethod.ALL });
+      .forRoutes({ path: 'product*', method: RequestMethod.ALL });
   }
 }
