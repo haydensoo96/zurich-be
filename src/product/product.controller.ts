@@ -30,7 +30,7 @@ export class ProductController {
   }
 
   @Put(':productCode')
-  @Roles('admin')
+  @Roles('user')
   async update(
     @Param('productCode') productCode: string,
     @Body() updateProductDto: UpdateProductDto,
@@ -39,7 +39,7 @@ export class ProductController {
   }
 
   @Delete(':productCode')
-  @Roles('admin')
+  @Roles('user')
   async delete(@Param('productCode') productCode: string) {
     return this.productService.remove(productCode);
   }

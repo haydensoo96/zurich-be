@@ -18,8 +18,9 @@ export class MockAuthMiddleware implements NestMiddleware {
     req.user = {
       id: 1,
       username: 'dev',
-      roles: process.env.ENV === 'development' ? ['user'] : [''],
+      roles: process.env.ENV === 'development' ? ['admin'] : ['user'],
     };
+
     next();
   }
 }

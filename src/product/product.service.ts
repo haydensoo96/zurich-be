@@ -1,8 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity.js';
-import { CreateProductDto, UpdateProductDto } from './dto/index.js';
+import { CreateProductDto, UpdateProductDto } from './dto';
 
 @Injectable()
 export class ProductService {
@@ -32,17 +36,30 @@ export class ProductService {
   }
 
   async create(createProductDto: CreateProductDto): Promise<Product> {
-    const product = this.productRepository.create(createProductDto);
-    return this.productRepository.save(product);
+    try {
+      const product = this.productRepository.create(createProductDto);
+      return await this.productRepository.save(product);
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create product');
+    }
   }
 
   async update(
     productCode: string,
     updateProductDto: UpdateProductDto,
   ): Promise<Product> {
-    const product = await this.findOneUpdate(productCode);
+    const product = await this.productRepository.findOne({
+      where: { productCode },
+    });
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
     Object.assign(product, updateProductDto);
-    return this.productRepository.save(product);
+    try {
+      return await this.productRepository.save(product);
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to update product');
+    }
   }
 
   async remove(productCode: string): Promise<void> {
@@ -52,6 +69,10 @@ export class ProductService {
     if (!product) {
       throw new NotFoundException('Product not found');
     }
-    await this.productRepository.remove(product);
+    try {
+      await this.productRepository.remove(product);
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to delete product');
+    }
   }
 }
