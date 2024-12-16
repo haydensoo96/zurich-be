@@ -3,6 +3,7 @@ Node Version 18.19.1
 Pre-requisite:
 
 - Postgres Local Server is Live on port 5432
+- Create Database name motor_insurance_website
 - In .env.development - Change the database Username and Password to access local postgres
 
 Step to Setup
