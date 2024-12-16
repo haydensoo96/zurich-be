@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { AppDataSource } from './data-source';
+import { AppModule } from './app.module.js';
+import { AppDataSource } from './data-source.js';
 
 async function bootstrap() {
   await AppDataSource.initialize();

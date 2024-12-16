@@ -1,3 +1,3 @@
-export * from './createProduct.dto';
-export * from './updateProduct.dto';
-export * from './findProduct.dto';
+export * from './createProduct.dto.js';
+export * from './updateProduct.dto.js';
+export * from './findProduct.dto.js';

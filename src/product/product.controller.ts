@@ -7,8 +7,8 @@ import {
   Param,
   Body,
 } from '@nestjs/common';
-import { ProductService } from './product.service';
-import { CreateProductDto, UpdateProductDto } from './dto';
+import { ProductService } from './product.service.js';
+import { CreateProductDto, UpdateProductDto } from './dto/index.js';
 
 @Controller('product')
 export class ProductController {
