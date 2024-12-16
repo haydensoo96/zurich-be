@@ -10,6 +10,9 @@ Step to Setup
 npm install
 npm run start
 
+Swagger Documentation:
+Access the Swagger documentation at [http://localhost:3000/api](http://localhost:3000/api)
+
 Test Endpoints:
 GET - /product/:productCode/:location
 POST - /product || Payload: {productCode: string, location: string, description: string, price: double}

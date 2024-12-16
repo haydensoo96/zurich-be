@@ -1,15 +1,21 @@
-import { IsString, IsDecimal } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateProductDto {
-  @IsString()
+  @ApiProperty({ example: '1000', description: 'The product code' })
   productCode: string;
 
-  @IsString()
+  @ApiProperty({
+    example: 'Test Product',
+    description: 'The product description',
+  })
   description: string;
 
-  @IsString()
+  @ApiProperty({
+    example: 'Test Location',
+    description: 'The product location',
+  })
   location: string;
 
-  @IsDecimal()
+  @ApiProperty({ example: 100, description: 'The product price' })
   price: number;
 }
